@@ -31,10 +31,12 @@ with DAG(
     make_pipeline = PythonOperator(
         task_id='pipeline',
         python_callable=pipeline,
+        dag=dag,
     )
     make_predict = PythonOperator(
         task_id='predict',
         python_callable=predict,
+        dag=dag,
     )
 
     make_pipeline >> make_predict
